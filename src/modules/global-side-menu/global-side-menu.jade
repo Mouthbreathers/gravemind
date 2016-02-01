@@ -1,0 +1,9 @@
+mixin mod-global-side-menu(menuGlobal, lang)
+    .global-side-menu.module(data-module='global-side-menu')
+            .global-side-menu_inner
+                +cmptMenuConfig(menuGlobal.menuConfig, lang)
+                +cmptMenuNav(menuGlobal.menuNav)
+                .global-side-menu_news
+                    p.global-side-menu_news-title= menuGlobal.newsTitle
+                    each post in menuGlobal.news
+                        +cmpt-menu-news(post)

@@ -1,0 +1,54 @@
+// Global shared styles
+
+* {
+	box-sizing: border-box;
+    position: relative;
+}
+
+body {
+}
+
+main {
+    @include clearfix;
+    background-color: map-get($colors, white);
+}
+.el-content {
+    background-color: map-get($colors, white);
+}
+
+h1 {
+
+}
+
+p {
+}
+
+ul {
+    @include clearfix;
+}
+
+button {
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+	outline: none;
+}
+
+// Accessibility, hidden text
+.visually-hidden {
+    @include visually-hidden;
+}
+.accessibility-hidden{
+
+}
+
+.hidden {
+	display: none!important;
+}
+
+.no-scroll{
+    overflow: hidden!important;
+	max-width: 100vw;
+	max-height: 100vh;
+}

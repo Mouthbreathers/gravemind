@@ -1,0 +1,101 @@
+// CSS for global elements that is needed for side menu
+body {
+    .main {
+        position: relative;
+        left: 0px;
+        transition: left .4s ease-in-out;
+        -webkit-font-smoothing: antialiased;
+
+        .el-content, // both header and content should dim
+        .header {
+            opacity: 1;
+            transition: .4s ease-in-out;
+        }
+    }
+
+    &.open {
+        overflow: hidden;
+        height: 100vh;
+        transition : none;
+
+        .main {
+            overflow: hidden;
+            position: relative;
+            left: -100%;
+            overflow: hidden;
+            background: black;
+
+            @include media($large-screen) {
+                left: -786px;
+            }
+
+            .el-content,
+            .header {
+                opacity: .55;
+            }
+        }
+
+        .global-side-menu {
+            visibility: visible;
+            overflow: auto;
+            right: 0;
+        }
+    }
+}
+
+.global-side-menu {
+    position: fixed;
+    right: -786px;
+    top: 0;
+    width: 786px;
+    background-color: map-get($colors, pink);
+    height: 100vh;
+    visibility: hidden;
+    overflow: auto;
+    transition: .4s ease-in-out;
+    z-index: 99999;
+
+    @include media(min-width 768px max-width 1024px) {
+        right: -100%;
+        width: 100%;
+    }
+
+    @include media($small-screen) {
+        right: -100%;
+        width: 100vw;
+        z-index: 999;
+        max-height: 100vh;
+    }
+
+    &_inner {
+        @include clearfix;
+        padding-left: 100px;
+
+        @include media(min-width 768px max-width 1024px) {
+            padding-left: $tablet-menu-left-right-padding;
+        }
+
+        @include media($small-screen) {
+            padding-left: 15px;
+        }
+    }
+
+    &_news {
+        @include span-columns(8);
+        @include media($small-screen) {
+            display: none;
+        }
+    }
+
+    &_news-title {
+        @include univers(700);
+        color:  #ffffff;
+        font-size: 13px;
+        text-transform: uppercase;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+        margin-bottom: 35px;
+        margin-top: 27px;
+    }
+}

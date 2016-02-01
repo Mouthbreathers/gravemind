@@ -1,0 +1,24 @@
+mixin mod-global-header(header)
+    header.module.global-header(data-module='global-header')
+        .global-header_logo-wrap
+            a(href=header.logo.href)
+                img.global-header_logo(src="/img/_z-logo.png")
+        .global-header_country-wrap
+            .global-header_country-button-wrap
+                button.global-header_country-button
+                    span Enel Global
+            .global-header_country-menu
+                button.global-header_country-menu-close Close
+                h3.global-header_country-menu-header Local Sites
+                .global-header_region-wrap
+                    each place in header.countrySites
+                        p= place.region
+                        ul
+                            each country in place.countries
+                                li
+                                    a(href=country.link)= country.name
+        .global-header_side-menu-button-wrap
+            button.global-header_side-menu-button
+                span menu
+
+    +mod-sticky-header(header)

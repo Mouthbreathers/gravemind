@@ -1,0 +1,121 @@
+// HOW TO USE:
+// @include font-size-tracking(12, 200, 16);
+@mixin font-size-tracking($size, $tracking: 1, $lh:125%) {
+
+	$lh: ($lh / $size * 100)+%;
+	font-size: $size+px;
+
+    @if ($tracking == 'auto') {
+        //blank
+    } @elseif($tracking == 0) {
+        letter-spacing: 0px;
+    } @else {
+        letter-spacing: (($tracking / (1000)) * $size)+px;
+    }
+
+	line-height: $lh;
+}
+
+// HOW TO USE:
+// @include univers(700) or univers('bold');
+@mixin univers($weight:400) {
+	@if $weight == 'light' or $weight == 300 {
+
+        $font-weight: 300;
+        font-family: 'UniversLight', $san-serif-stack;
+
+	} @elseif $weight == 'regular' or $weight == 'normal' or $weight == 400 {
+
+        $font-weight: 400;
+        font-family: 'Univers', $san-serif-stack;
+
+	} @elseif $weight == 'bold' or $weight == 700 {
+
+		$font-weight: 700;
+        font-family: 'UniversBold', $san-serif-stack;
+
+	} @else {
+
+        $font-weight: $weight;
+        font-family: 'Univers', $san-serif-stack;
+
+    }
+    font-weight: $font-weight;
+    font-style: normal;
+}
+
+@mixin georgia() {
+    font-family: $serif-stack;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin heroBackgroundGradient($gradient) {
+    background: map-get($gradient, color2);
+    background: -moz-linear-gradient(top, map-get($gradient, color2) 29%, map-get($gradient, color1) 71%);
+    background: -webkit-linear-gradient(top, map-get($gradient, color2) 29%, map-get($gradient, color1) 71%);
+    background: linear-gradient(to bottom, map-get($gradient, color2) 29%, map-get($gradient, color1) 71%);
+}
+
+@mixin breakpoint($viewport: 'med') {
+    @if $viewport == 'med' {
+        $viewportSize: 768px;
+    } @else if $viewport == 'lg' {
+        $viewportSize: 1024px;
+    }
+
+    @media only screen and (min-width: $viewportSize) {
+        @content;
+    }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+// Container
+@mixin container {
+    @include outer-container;
+    @include media($small-screen) {
+        max-width:  90%;
+    }
+    @include media($medium-screen) {
+        max-width:  93%;
+    }
+    @include media($large-screen) {
+        max-width:  80%;
+    }
+}
+
+@mixin transition-color-fade($speed: 100ms) {
+    transition: all $speed linear;
+}
+
+@mixin pseudo {
+    content: '';
+    display: block;
+    position: absolute;
+}
+
+@mixin noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// NEAT omega reset
+@mixin omega-reset($nth) {
+	&:nth-child(#{$nth}) {
+	  margin-right: flex-gutter();
+	}
+	&:nth-child(#{$nth}+1) {
+	  clear: none
+	}
+}

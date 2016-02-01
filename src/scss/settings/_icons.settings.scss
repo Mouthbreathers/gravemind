@@ -1,0 +1,99 @@
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Please update this map if you add new icons - add the class and content value after the existing ones
+// NEW: Icon styles are happening dynamically! No need to update two things -
+// just add the unicode point and class name (minus the "icon") of any new icons
+// to this map, and the styles will automatically be created for it.
+// This gives us some flexibility and means we can do things like reorder,
+// rename, or dynamically access any icon as needed. Plus it's easy to read.
+
+@function unicode($str){
+    @return unquote("\"") + $str + unquote("\"");
+}
+
+$icons: (
+	arrow: \e900,
+	fb: \e901,
+    mail: \e902,
+	print: \e903,
+	twitter: \e904,
+    google: \e90b,
+    youtube: \e90a,
+    chevron-right: \e905,
+    chevron-left: \e906,
+    chevron-down: \e907,
+    chevron-up: \e908,
+    menu: \e909,
+    close: \e90d);
+
+// This loop generates css classes:
+// Just keep the map current please!
+
+@each $name, $content in $icons {
+	.icon-#{$name}:before {
+		content: unicode($content);
+	}
+}
+
+// @function get-icon --- returns the unicode point mapped to the given icon name/class, from the $icons map ^
+// which might be useful since you can't do @extend .whatever-icon inside a media query
+// Usage:
+// .special-icon-situation:after { font-family: 'icomoon'; content: get-icon(arrow-down); }
+
+@function get-icon($name) {
+	@if map-has-key($icons, $name) {
+    	$icon-code: map_get($icons, $name);
+    	@return unicode($icon-code);
+    }
+    @else {
+		@warn "No icon stored under that name - make sure to update the $icons map in icons.scss whenever you add a new icon! \a
+	Current icons: \a
+	#{map_keys($icons)} \a
+	";
+	}
+}
+
+// A shorter way of doing the same - use this if you don't want to explicitly
+// give your element a "whatever-icon" class in the markup
+
+@mixin icon($name, $after: false) {
+    $psuedo: "before";
+    $dir: false;
+
+    @if $name == 'arrow-up' {
+        $name: 'arrow';
+        $dir: 270deg;
+    } @else if $name == 'arrow-left' {
+        $name: 'arrow';
+        $dir: 180deg;
+    } @else if $name == 'arrow-down' {
+        $name: 'arrow';
+        $dir: 90deg;
+    } @else if $name == 'arrow-right' {
+        $name: 'arrow';
+    }
+
+    @if $after == true {
+        $psuedo: "after";
+    }
+
+    &:#{$psuedo} {
+        display: block;
+        font-family: 'icomoon';
+        content: get-icon($name);
+        font-style: normal;
+        font-weight: normal;
+        @if $dir {
+            transform: rotate($dir);
+        }
+	}
+}

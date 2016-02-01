@@ -1,0 +1,8 @@
+include ../init/mixins.jade
+
+doctype html
+html(lang='en')
+    +mod-html-head()
+    body(class="color-scheme--#{colorScheme}")
+        .listener
+        +mod-html-scripts()

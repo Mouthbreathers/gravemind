@@ -1,0 +1,77 @@
+// Colors
+$colors: (
+    white: #ffffff,
+    offwhite: #f4f4f4,
+    black: #000000,
+    slate: #111111,
+    silver: #999999,
+    cloud: #cecece,
+    steel: #666666,
+    red: #e61400,
+    brick: #a4043d,
+    pink: #ff0f64,
+    green: #55be5a,
+    forest: #0f955a,
+    blue: #0555fa,
+    lightblue: #3777fb,
+    sky: #41b9e6,
+    lightsky: #60c5ea,
+    magenta: #ee004d,
+    border-gray: #dddddd,
+    orange: #ff5a0f,
+	cyan: #50bee8
+);
+
+$gradients: (
+    life: (
+        color1: map-get($colors, pink),
+        color2: map-get($colors, sky)
+    ),
+    red: (
+        color1: map-get($colors, red),
+        color2: map-get($colors, pink)
+    ),
+    power: (
+        color1: map-get($colors, green),
+        color2: map-get($colors, blue)
+    ),
+    green: (
+        color1: map-get($colors, forest),
+        color2: map-get($colors, green)
+    ),
+    sky: (
+        color1: map-get($colors, sky),
+        color2: map-get($colors, lightsky)
+    ),
+    blue: (
+        color1: map-get($colors, blue),
+        color2: map-get($colors, lightblue)
+    )
+);
+
+$san-serif-stack: Calibri, Myriad, Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif-stack: Georgia, Times, 'Times New Roman', serif;
+$desktop-menu-top-padding: 23px;
+$desktop-menu-left-right-padding: 30px;
+$desktop-left-right-padding: 30px;
+$article-left-right-padding: 13%;
+$tablet-menu-top-padding: 25px;
+$tablet-menu-left-right-padding: 25px;
+$tablet-left-right-padding: 25px;
+$mobile-left-right-padding: 15px;
+$mobile-top-padding: 20px;
+
+$btn-min-width: 160px;
+
+$content-max-width: 1260px; // PSD has it around 1253, rounding up for alignment
+
+// Breakpoints
+$small-breakpoint: 768px;
+$large-breakpoint: 1024px;
+// used mainly for homepage
+$vertical-breakpoint: 700px;
+
+// Grid
+$small-screen: new-breakpoint(max-width ($small-breakpoint - 1px) 6);
+$medium-screen: new-breakpoint(min-width $small-breakpoint 12);
+$large-screen: new-breakpoint(min-width $large-breakpoint 12);

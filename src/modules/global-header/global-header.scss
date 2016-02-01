@@ -1,0 +1,286 @@
+.global-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    padding: ($mobile-top-padding - 2px) $mobile-left-right-padding 0px $mobile-left-right-padding; // top padding leave some space for menu hamburger pad
+    width: 100%;
+    z-index: 9999;
+    user-select: none; //prevent highlighting
+    cursor: default;
+
+    @include media($medium-screen) {
+        padding: $tablet-menu-top-padding $tablet-menu-left-right-padding 0;
+    }
+
+    @include media($large-screen) {
+        padding: $desktop-menu-top-padding $desktop-menu-left-right-padding 0;
+    }
+
+    &_logo-wrap {
+        max-width: 60px;
+
+        @include media($medium-screen) {
+            max-width: 120px;
+        }
+    }
+
+    &_logo {
+        width: 100%;
+    }
+
+    &_side-menu-button-wrap {
+        margin-top: 7px;
+        margin-left: auto;
+
+        @include media($medium-screen) {
+            margin-top: 20px;
+            margin-left: 20px;
+
+            &:before {
+                content: '';
+                height: 25px;
+                width: 1px;
+                position: absolute;
+                left: -30px;
+                bottom: 5px; // align with menu hamburger
+                background-color: map-get($colors, white);
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &_side-menu-button {
+        @include univers(bold);
+        @include icon("menu" ,true);
+        background: none;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        font-size: 13px;
+        text-align: right;
+
+        &::after {
+            color: white;
+            float: right;
+            font-size: 20px;
+            transform: translateY(-5px);
+
+            @include media($medium-screen) {
+                font-size: 25px;
+            }
+        }
+
+        &--open {
+            &::before {
+                content: "Close";
+                color: map-get($colors, white);
+            }
+            &::after {
+                content: " icon2";
+                color: map-get($colors, white);
+            }
+        }
+
+        span {
+            display: none;
+            color: map-get($colors, white);
+            padding-right: 20px;
+
+            @include media($medium-screen) {
+                text-transform: uppercase;
+                display: inline-block;
+            }
+        }
+    }
+
+    &_country-wrap {
+        position: relative;
+        float: right;
+        z-index: 2;
+
+        @include media($medium-screen) {
+            width: 300px;
+            margin-left: auto;
+            margin-right: 9px;
+        }
+
+        &--open {
+            .global-header_country-button {
+                @include icon(chevron-up, true)
+                color: map-get($colors, steel);
+
+                &:after {
+                    font-size: 10px;
+                    margin-left: 15px;
+                    padding-bottom: 5px;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+
+            .global-header_country-menu {
+                height: 700px;
+                visibility: visible;
+                overflow: auto;
+                transition: .4s ease;
+                margin-top: (-1 * $tablet-menu-top-padding);
+                box-shadow: 0 0 3px rgba(0,0,0,0.2); // so it doesn't blend into a white background
+
+                @include media($large-screen) { // desktop padding is greater
+                    margin-top: (-1 * $desktop-menu-top-padding);
+                }
+
+                @include media($small-screen) {
+                    margin-top: 0px;
+                    height: 100vh;
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &_country-button-wrap {
+        display: none;
+        width: 100%;
+        padding-top: 19px;
+        padding-right: 32px;
+        text-align: right;
+
+        @include media($medium-screen){
+            display: inline-block;
+        }
+    }
+
+    &_country-button {
+        @include icon(chevron-down, true)
+        @include univers(700)
+        cursor: pointer;
+        font-size: 13px;
+        color: map-get($colors, white);
+        text-transform: uppercase;
+        line-height: 1.846;
+        text-align: right;
+        transition: .4s ease;
+
+        &:after {
+            font-size: 10px;
+            margin-left: 15px;
+            padding-bottom: 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    &_country-menu {
+        height: 0px;
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        padding-left: 40px;
+        background-color: map-get($colors, white);
+        visibility: hidden;
+        transition: .4s ease;
+
+        @include media($small-screen) {
+            position: fixed;
+            height: 100vh;
+            left: -100%;
+            z-index: 999;
+            top: 0px;
+            bottom: 0px;
+            padding-left: 15px;
+        }
+    }
+
+    &_country-menu-header {
+        @include univers(300);
+        padding-top: ($desktop-menu-top-padding + 90px); // ~60 belows "ENEL GLOBAL"
+        font-size: 24px;
+        color: rgb(17, 17, 17);
+        text-transform: uppercase;
+        margin-bottom: 30px;
+
+        @include media($small-screen) {
+            font-size: 18px;
+            padding-top: 70px;
+        }
+    }
+
+    &_country-menu-close {
+        position: static;
+        font-size: 0px;
+        @include icon('close');
+
+        &:before {
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        @include media($medium-screen) {
+            display: none;
+        }
+    }
+
+    &_region-wrap {
+
+        ul {
+            margin-bottom: 30px;
+        }
+
+        & > p {
+            font-size: 13px;
+            font-family: "Georgia";
+            color: rgba(0, 0, 0, 0.4);
+            line-height: 1.846;
+        }
+
+        li a {
+            @include univers(700)
+            @include font-size-tracking(13, 10, 30);
+            // font-size: 13px;
+            color: rgb(17, 17, 17);
+            text-transform: uppercase;
+            // line-height: 30px;
+            position: relative;
+
+            &::after {
+                content: "";
+                width: 0px;
+                transition: .4s ease;
+            }
+
+            &:hover::after {
+                content: "";
+                width: 5px;
+                height: 30px;
+                background-color: #c6c6c6;
+                position: absolute;
+                left: -15px;
+                transition: .4s ease;
+
+                @include media($small-screen) {
+                    background: -moz-linear-gradient(left, rgba(198,198,198,1) 0%, rgba(198,198,198,1) 11%, rgba(198,198,198,0) 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(left, rgba(198,198,198,1) 0%,rgba(198,198,198,1) 11%,rgba(198,198,198,0) 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to right, rgba(198,198,198,1) 0%,rgba(198,198,198,1) 11%,rgba(198,198,198,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', endColorstr='#00c6c6c6',GradientType=1 )"; /* IE6-9 */
+                    position: absolute;
+                    width: 80px;
+                    height: 30px;
+                    z-index: -1;
+                }
+            }
+        }
+    }
+}
