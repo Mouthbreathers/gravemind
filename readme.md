@@ -2,6 +2,16 @@
 ## Purpose
 This is a very high level and very opinionated set of guidelines for structuring your front end code.  Sometimes I'll give reasons for the way we're doing things, when those reasons matter.  Other times, the reason will be because we had to pick something.  In any case, our product will be better for it.  If, for some reason, one of these rules makes it very difficult for you to continue with a feature, please let me (Tom) know.  These are not written in stone, only in text on the internet.
 
+## Getting Started
+This project includes the server and two clients.  The server, Gravemind, is our central control structure.  It takes inputs from the Listener and interperates them into outputs for the Mirror.  The root level of the project includes server.js and configurations.  The `src` folder is the "source" for the client files.  This includes uncompiled SASS, unconcatenated JS, and template files.
+
+* Clone this repository and change directory into the project.
+* If you've never installed gulp globally, run `sudo npm install -g gulp`
+* Run `npm install`.  You may have to be sudo for this to work.
+* Run `gulp dev` build the project and begin the watch task.  The watch task will rebuild certain parts of the project when it detects a change (so, css will be recompiled when it detects a change to a scss file being watched).
+* Finally, to start the development server run `node server.js` in a new terminal tab and enter http://localhost:3000 in your browser's address bar.
+* Only the previous two bullets are required after the initial setup.
+
 ### Git
 * All work should be done on a branch, like `feature/new-feature`.  _**Why**: Keeping our work separate like this reduces merge conflicts and makes it easier to track work._
 * Push often on your branch and be descriptive with your commit messages.
