@@ -21,8 +21,8 @@ This is a very high level and very opinionated set of guidelines for structuring
 
 ### Modules
 * Modules are page-level and are the large building blocks of a view.  Modules do not have to be reused in another view or repeated.
-* Modules should not be included in other modules.  _**Why**: To make our code easy to read, we will only pull chunks out of a module if those chunks are reused or looped.  These chunks are then components.  This cuts down on the number of files that you need to have open at once and makes it easier to find what you're looking for when developing.
-* Prefix module mixins with mod-_
+* Modules should not be included in other modules.  _**Why**: To make our code easy to read, we will only pull chunks out of a module if those chunks are reused or looped.  These chunks are then components.  This cuts down on the number of files that you need to have open at once and makes it easier to find what you're looking for when developing._
+* Prefix module mixins with mod-
 * Use the provided controller pattern for creating Javascript for a module.  _**Why**: The controller pattern was created to help isolate Javascript to a module and to help control the initialization of a module.  It also provides a way to ensure that module code runs once on each instance of a module._
 * If a module does not require Javascript, it does not need a controller.
 * Always use the $module variable provided to the controller and the .find() method to identify DOM elements within a module.  For example: $element = $module.find('module_element');  _**Why**: When a module controller is initialized, it searches for all instances in the DOM of the module.  For each module, the controller is run once and the $module element represents that instance of the module.  Because of this, always using $module to find DOM elements ensures that each module has its Javascript applied only once._
@@ -51,8 +51,8 @@ This is a very high level and very opinionated set of guidelines for structuring
 * When toggling classes, it's better to apply or remove one class to a higher level element than to multiple lower level elements.  _**Why**: Less javascript required to apply or remove classes, better synchronization between animations._
 
 ### Javascript
-* Javascript for a module should only work within the module.  If you need to communicate across modules, use the publish / subscribe service on the global enel object.  Adding a class to the body is an expection to this.  _**Why**: Modules should be portable and should not rely on another module to function.  Obviously, there will always be a body element so that is permissible._
-* Name functions for events.  _**Why**: It makes code more readable and allows us to debug easier._
+* Javascript for a module should only work within the module.  If you need to communicate across modules, use the publish / subscribe service on the global _z object.  Adding a class to the body is an expection to this.  _**Why**: Modules should be portable and should not rely on another module to function.  Obviously, there will always be a body element so that is permissible._
+* Name functions for events.  _**Why**: It makes code more readable and allows us to debug more easily._
 
 ```javascript
 $openButton.click(handleOpenClick);
