@@ -56,8 +56,7 @@ gulp.task('markup', markup);
 gulp.task('watch:markup', function () {
     return gulp.watch([
         'src/views/*.jade',
-        'src/modules/**/*.jade',
-        'src/components/**/*.jade'
+        'src/modules/**/*.jade'
         ], ['markup']);
 });
 
@@ -65,7 +64,6 @@ gulp.task('watch:styles', function () {
     return gulp.watch([
         'src/scss/vendor/*.scss',
         'src/scss/settings/*.scss',
-        'src/components/**/*.scss',
         'src/modules/**/*.scss',
         'src/scss/bundle.scss'
         ], ['styles']);
@@ -75,7 +73,6 @@ gulp.task('watch:app', function() {
     return gulp.watch([
     'src/init/init.js',
     'src/services/**/*.js',
-    'src/components/**/*.js',
     'src/modules/**/*.js'
     ], ['app']);
 });
