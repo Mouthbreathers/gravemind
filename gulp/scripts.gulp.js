@@ -16,8 +16,7 @@ function scriptsApp(){
     return gulp.src([
             'src/init/init.js',
             'src/services/**/*.js',
-            'src/components/**/*.js',
-            'src/module/**/*.js'
+            'src/modules/**/*.js'
         ]).pipe(plumber({errorHandler: onError}))
         .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
